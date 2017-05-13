@@ -9,7 +9,9 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Created by Junaid Hassan on 10-May-17.
@@ -50,15 +52,23 @@ public class MyListAdapter extends ArrayAdapter<MyListModel> {
         viewHolder.appName.setText(model.appName);
         viewHolder.myTime.setText(model.nowTime);
 
-        if(position==0){
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("dd-MMM-yyyy");
+        String formattedDate = df.format(c.getTime());
+
+        if (position == 0) {
             viewHolder.row.setBackgroundColor(Color.CYAN);
         }
 
-        if(position%2==1){
+        if (position % 2 == 1) {
             viewHolder.row.setBackgroundColor(Color.YELLOW);
         }
 
-        if(position%2==0){
+        if (position % 2 == 0) {
+            viewHolder.row.setBackgroundColor(Color.CYAN);
+        }
+
+        if (formattedDate.equals(model.date)) {
             viewHolder.row.setBackgroundColor(Color.CYAN);
         }
         return convertView;
